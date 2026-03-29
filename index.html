@@ -117,6 +117,129 @@
     color: var(--muted);
   }
 
+  /* ─── VOTE HASHTAG ─── */
+  .vote-hashtag {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    line-height: 1;
+    flex-shrink: 0;
+    margin: 0 auto;
+  }
+
+  /* ─── LEADER SECTION ─── */
+  .leader-section {
+    margin-bottom: 40px;
+  }
+  .leader-section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .ls-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(180deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
+  }
+  .ls-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .leader-profile {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: var(--card);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 28px 36px;
+    box-shadow: 0 0 40px rgba(139,0,0,0.2), 0 0 0 1px rgba(230,184,0,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .leader-profile::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(180deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
+  }
+  .leader-photo-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .leader-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: 4px solid var(--gold);
+    box-shadow: 0 0 24px rgba(230,184,0,0.35);
+  }
+  .leader-flag-ring {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    background: linear-gradient(180deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .leader-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .leader-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+  }
+  .leader-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .leader-seats {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .seat-badge {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(230,184,0,0.5);
+    color: var(--gold);
+    background: rgba(230,184,0,0.08);
+  }
+  @media (max-width: 600px) {
+    .leader-profile { flex-direction: column; text-align: center; padding: 24px 20px; }
+    .leader-seats { justify-content: center; }
+    .vote-hashtag { font-size: 1rem; }
+  }
+
   /* ─── CONTROLS ─── */
   .controls-bar {
     background: var(--dark2);
@@ -352,8 +475,8 @@
   /* ─── LEADER BADGE ─── */
   .leader-badge {
     display: inline-block;
-    background: linear-gradient(90deg, #8b0000 0%, #8b0000 30%, #e6b800 30%, #e6b800 70%, #8b0000 70%, #8b0000 100%);
-    color: #fff;
+    background: linear-gradient(90deg, #b8860b, #ffd700, #f5c518, #ffd700, #b8860b);
+    color: #000;
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.62rem;
     font-weight: 700;
@@ -362,7 +485,8 @@
     padding: 2px 7px;
     border-radius: 3px;
     margin-top: 5px;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    text-shadow: 0 1px 1px rgba(255,255,255,0.3);
+    box-shadow: 0 0 6px rgba(255,215,0,0.7), 0 0 12px rgba(255,215,0,0.3);
   }
   .candidate-card.is-leader {
     border-color: var(--gold);
@@ -392,6 +516,7 @@
       <h1><span style="color:#8b0000">T</span><span style="color:#e6b800">V</span><span style="color:#8b0000">K</span> – <span style="color:#8b0000">Know</span> <span style="color:#e6b800">Your</span> <span style="color:#8b0000">Candidates</span> <span style="color:#ffffff">2026</span></h1>
       <p>Tamilaga Vettri Kazhagam &nbsp;·&nbsp; Tamil Nadu Legislative Assembly Elections</p>
     </div>
+    <div class="vote-hashtag">#VoteForWhistle</div>
     <div class="header-stats">
       <div class="big">234</div>
       <div class="lbl">Constituencies</div>
@@ -424,6 +549,30 @@
 
 <!-- GRID -->
 <div class="grid-container">
+
+  <!-- PARTY LEADER SECTION -->
+  <div class="leader-section">
+    <div class="leader-section-label">
+      <span class="ls-line"></span>
+      <span class="ls-title">Party Leader</span>
+      <span class="ls-line"></span>
+    </div>
+    <div class="leader-profile">
+      <div class="leader-photo-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1837200576779563009/EcHkTM-M_400x400.jpg" alt="Party Leader" class="leader-photo" id="leaderPhoto">
+        <div class="leader-flag-ring"></div>
+      </div>
+      <div class="leader-info">
+        <div class="leader-name">C. Joseph Vijay</div>
+        <div class="leader-title">President, Tamilaga Vettri Kazhagam</div>
+        <div class="leader-seats">
+          <span class="seat-badge">Perambur</span>
+          <span class="seat-badge">Tiruchirappalli East</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="candidates-grid" id="candidatesGrid"></div>
 </div>
 
