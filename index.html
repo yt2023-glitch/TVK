@@ -7,10 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --red:    #c0392b;
-    --red2:   #e74c3c;
-    --gold:   #f39c12;
-    --gold2:  #f1c40f;
+    --red:    #8b0000;
+    --red2:   #a80000;
+    --gold:   #e6b800;
+    --gold2:  #ffd700;
     --dark:   #0d0d0d;
     --dark2:  #1a1a1a;
     --dark3:  #242424;
@@ -33,7 +33,7 @@
   /* ─── HEADER ─── */
   header {
     background: linear-gradient(135deg, #0d0d0d 0%, #1a0000 50%, #0d0d0d 100%);
-    border-bottom: 3px solid var(--red);
+    border-bottom: 3px solid #8b0000;
     padding: 0;
     position: relative;
     overflow: hidden;
@@ -46,19 +46,13 @@
       45deg,
       transparent,
       transparent 40px,
-      rgba(192,57,43,0.04) 40px,
-      rgba(192,57,43,0.04) 41px
+      rgba(139,0,0,0.05) 40px,
+      rgba(139,0,0,0.05) 41px
     );
   }
   .header-accent {
-    height: 5px;
-    background: linear-gradient(90deg, var(--red), var(--gold), var(--red2), var(--gold2), var(--red));
-    background-size: 400% 100%;
-    animation: gradShift 6s linear infinite;
-  }
-  @keyframes gradShift {
-    0%   { background-position: 0% 50%; }
-    100% { background-position: 400% 50%; }
+    height: 7px;
+    background: linear-gradient(90deg, #8b0000 0%, #8b0000 33.3%, #e6b800 33.3%, #e6b800 66.6%, #8b0000 66.6%, #8b0000 100%);
   }
   .header-inner {
     max-width: 1400px;
@@ -74,7 +68,7 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--red), var(--red2));
+    background: linear-gradient(135deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 66%, #8b0000 66%, #8b0000 100%);
     border: 3px solid var(--gold);
     display: flex;
     align-items: center;
@@ -84,8 +78,8 @@
     font-size: 28px;
     font-weight: 900;
     color: var(--white);
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    box-shadow: 0 0 30px rgba(192,57,43,0.4);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    box-shadow: 0 0 30px rgba(139,0,0,0.5);
   }
   .header-text h1 {
     font-family: 'Playfair Display', serif;
@@ -222,7 +216,7 @@
   }
   .candidate-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(192,57,43,0.25);
+    box-shadow: 0 12px 40px rgba(139,0,0,0.3);
     border-color: var(--red);
   }
   .candidate-card::before {
@@ -230,7 +224,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--red), var(--gold));
+    background: linear-gradient(90deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
     opacity: 0;
     transition: opacity 0.22s;
   }
@@ -259,13 +253,13 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: linear-gradient(135deg, #1a1a1a, #2a1010);
+    background: linear-gradient(135deg, #1a0000, #0d0d0d);
   }
   .photo-placeholder .initials {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--red), var(--red2));
+    background: linear-gradient(135deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -273,7 +267,7 @@
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--white);
-    border: 2px solid rgba(255,255,255,0.15);
+    border: 2px solid rgba(230,184,0,0.4);
   }
   .photo-placeholder .ph-text {
     font-family: 'Rajdhani', sans-serif;
@@ -289,7 +283,7 @@
     top: 8px; left: 8px;
     background: rgba(0,0,0,0.75);
     backdrop-filter: blur(4px);
-    border: 1px solid rgba(192,57,43,0.5);
+    border: 1px solid rgba(139,0,0,0.7);
     border-radius: 4px;
     padding: 2px 7px;
     font-family: 'Rajdhani', sans-serif;
@@ -312,7 +306,7 @@
   }
   .constituency-name {
     font-size: 0.8rem;
-    color: var(--red2);
+    color: #c8a000;
     font-weight: 600;
     font-family: 'Rajdhani', sans-serif;
     letter-spacing: 0.3px;
@@ -348,7 +342,7 @@
     color: var(--muted);
     letter-spacing: 1px;
   }
-  footer strong { color: var(--red2); }
+  footer strong { color: #e6b800; }
 
   /* ─── DISTRICT LABEL (separator) ─── */
   .district-header {
@@ -376,8 +370,8 @@
   /* ─── LEADER BADGE ─── */
   .leader-badge {
     display: inline-block;
-    background: linear-gradient(90deg, var(--gold), var(--gold2));
-    color: #000;
+    background: linear-gradient(90deg, #8b0000 0%, #8b0000 30%, #e6b800 30%, #e6b800 70%, #8b0000 70%, #8b0000 100%);
+    color: #fff;
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.62rem;
     font-weight: 700;
@@ -386,13 +380,14 @@
     padding: 2px 7px;
     border-radius: 3px;
     margin-top: 5px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   }
   .candidate-card.is-leader {
     border-color: var(--gold);
-    box-shadow: 0 0 18px rgba(243,156,18,0.2);
+    box-shadow: 0 0 18px rgba(230,184,0,0.2);
   }
   .candidate-card.is-leader::before {
-    background: linear-gradient(90deg, var(--gold), var(--red));
+    background: linear-gradient(90deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
     opacity: 1;
   }
 
@@ -410,7 +405,7 @@
 
 <header>
   <div class="header-inner">
-    <div class="party-emblem">TVK</div>
+    <div class="party-emblem"><img src="https://i.postimg.cc/8TGNdTtz/images.png?dl=1" alt="TVK Logo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <div class="header-text">
       <h1>TVK – <span>Know Your Candidates</span> 2026</h1>
       <p>Tamilaga Vettri Kazhagam &nbsp;·&nbsp; Tamil Nadu Legislative Assembly Elections</p>
@@ -421,6 +416,9 @@
     </div>
   </div>
 </header>
+
+<!-- TVK FLAG STRIPE -->
+<div style="height:6px;background:linear-gradient(90deg,#8b0000 0%,#8b0000 33.3%,#e6b800 33.3%,#e6b800 66.6%,#8b0000 66.6%,#8b0000 100%);"></div>
 
 <!-- CONTROLS -->
 <div class="controls-bar">
