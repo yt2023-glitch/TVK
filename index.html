@@ -52,7 +52,7 @@
   }
   .header-accent {
     height: 7px;
-    background: linear-gradient(90deg, #8b0000 0%, #8b0000 33.3%, #e6b800 33.3%, #e6b800 66.6%, #8b0000 66.6%, #8b0000 100%);
+    background: linear-gradient(180deg, #8b0000 0%, #8b0000 33.3%, #e6b800 33.3%, #e6b800 66.6%, #8b0000 66.6%, #8b0000 100%);
   }
   .header-inner {
     max-width: 1400px;
@@ -68,18 +68,17 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 66%, #8b0000 66%, #8b0000 100%);
     border: 3px solid var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
     flex-shrink: 0;
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 900;
-    color: var(--white);
-    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
     box-shadow: 0 0 30px rgba(139,0,0,0.5);
+    background: #fff;
+  }
+  .party-emblem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .header-text h1 {
     font-family: 'Playfair Display', serif;
@@ -89,7 +88,7 @@
     letter-spacing: 0.5px;
     line-height: 1.15;
   }
-  .header-text h1 span { color: var(--gold); }
+  .header-text h1 span { }
   .header-text p {
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.95rem;
@@ -224,7 +223,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
+    background: linear-gradient(180deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
     opacity: 0;
     transition: opacity 0.22s;
   }
@@ -249,34 +248,17 @@
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    background: linear-gradient(135deg, #1a0000, #0d0d0d);
+    background: linear-gradient(180deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
   }
-  .photo-placeholder .initials {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--white);
-    border: 2px solid rgba(230,184,0,0.4);
+  .placeholder-logo {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
   }
-  .photo-placeholder .ph-text {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 1px;
-    text-align: center;
-    text-transform: uppercase;
-  }
+
 
   .card-num {
     position: absolute;
@@ -387,7 +369,7 @@
     box-shadow: 0 0 18px rgba(230,184,0,0.2);
   }
   .candidate-card.is-leader::before {
-    background: linear-gradient(90deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
+    background: linear-gradient(180deg, #8b0000 0%, #8b0000 33%, #e6b800 33%, #e6b800 67%, #8b0000 67%, #8b0000 100%);
     opacity: 1;
   }
 
@@ -407,7 +389,7 @@
   <div class="header-inner">
     <div class="party-emblem"><img src="https://i.postimg.cc/8TGNdTtz/images.png?dl=1" alt="TVK Logo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <div class="header-text">
-      <h1>TVK – <span>Know Your Candidates</span> 2026</h1>
+      <h1><span style="color:#8b0000">T</span><span style="color:#e6b800">V</span><span style="color:#8b0000">K</span> – <span style="color:#8b0000">Know</span> <span style="color:#e6b800">Your</span> <span style="color:#8b0000">Candidates</span> <span style="color:#ffffff">2026</span></h1>
       <p>Tamilaga Vettri Kazhagam &nbsp;·&nbsp; Tamil Nadu Legislative Assembly Elections</p>
     </div>
     <div class="header-stats">
@@ -418,7 +400,7 @@
 </header>
 
 <!-- TVK FLAG STRIPE -->
-<div style="height:6px;background:linear-gradient(90deg,#8b0000 0%,#8b0000 33.3%,#e6b800 33.3%,#e6b800 66.6%,#8b0000 66.6%,#8b0000 100%);"></div>
+<div style="height:9px;background:linear-gradient(180deg,#8b0000 0%,#8b0000 33.3%,#e6b800 33.3%,#e6b800 66.6%,#8b0000 66.6%,#8b0000 100%);"></div>
 
 <!-- CONTROLS -->
 <div class="controls-bar">
@@ -801,12 +783,10 @@ function buildCard(item) {
   const photoSection = photoUrl
     ? `<img src="${photoUrl}" alt="${displayName}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
        <div class="photo-placeholder" style="display:none">
-         <div class="initials">${initials}</div>
-         <div class="ph-text">Photo<br>Coming Soon</div>
+         <img src="https://i.postimg.cc/8TGNdTtz/images.png?dl=1" alt="TVK Logo" class="placeholder-logo">
        </div>`
     : `<div class="photo-placeholder">
-         <div class="initials">${initials}</div>
-         <div class="ph-text">Photo<br>Coming Soon</div>
+         <img src="https://i.postimg.cc/8TGNdTtz/images.png?dl=1" alt="TVK Logo" class="placeholder-logo">
        </div>`;
 
   card.innerHTML = `
