@@ -373,6 +373,29 @@
     background: var(--border);
   }
 
+  /* ─── LEADER BADGE ─── */
+  .leader-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    color: #000;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 5px;
+  }
+  .candidate-card.is-leader {
+    border-color: var(--gold);
+    box-shadow: 0 0 18px rgba(243,156,18,0.2);
+  }
+  .candidate-card.is-leader::before {
+    background: linear-gradient(90deg, var(--gold), var(--red));
+    opacity: 1;
+  }
+
   @media (max-width: 600px) {
     .header-inner { flex-wrap: wrap; }
     .header-stats { margin-left: 0; }
@@ -436,314 +459,317 @@
 // ─────────────────────────────────────────────────────────────
 const DATA = [
   // TIRUVALLUR DISTRICT
-  [1,  "Ponneri",          "Tiruvallur",  "", ""],
-  [2,  "Tiruttani",        "Tiruvallur",  "", ""],
-  [3,  "Gummidipoondi",    "Tiruvallur",  "", ""],
-  [4,  "Poonamallee",      "Tiruvallur",  "", ""],
-  [5,  "Avadi",            "Tiruvallur",  "", ""],
-  [6,  "Maduravoyal",      "Tiruvallur",  "", ""],
-  [7,  "Ambattur",         "Tiruvallur",  "", ""],
-  [8,  "Tiruvallur",       "Tiruvallur",  "", ""],
-  [9,  "Thiruvottiyur",    "Tiruvallur",  "", ""],
-  [10, "Perambur",         "Tiruvallur",  "", ""],
+  // PDF #1=Gummidipoondi, #2=Ponneri, #3=Tiruttani, #4=Thiruvallur, #5=Poonamallee,
+  // #6=Avadi, #7=Maduravoyal, #8=Ambattur, #9=Madavaram, #10=Thiruvottiyur,
+  // #11=Dr.Radhakrishnan Nagar, #12=Perambur (Vijay's seat)
+  [1,  "Gummidipoondi",    "Tiruvallur",  "S. Vijayakumar",       ""],
+  [2,  "Ponneri",          "Tiruvallur",  "Dr. M S Ravi",         ""],
+  [3,  "Tiruttani",        "Tiruvallur",  "Dr. Sathyakumar",      ""],
+  [4,  "Thiruvallur",      "Tiruvallur",  "Dr. Arunkumar",        ""],
+  [5,  "Poonamallee",      "Tiruvallur",  "R. Prakasam",          ""],
+  [6,  "Avadi",            "Tiruvallur",  "R. Rameshkumar",       ""],
+  [7,  "Maduravoyal",      "Tiruvallur",  "P. Revanth Saran",     ""],
+  [8,  "Ambattur",         "Tiruvallur",  "G. Balamurugan",       ""],
+  [9,  "Madavaram",        "Tiruvallur",  "M. L. Vijay Prabhu",   ""],
+  [10, "Thiruvottiyur",    "Tiruvallur",  "Senthilkumar",         ""],
 
   // CHENNAI DISTRICT
-  [11, "Kolathur",         "Chennai",     "", ""],
-  [12, "Villivakkam",      "Chennai",     "", ""],
-  [13, "Thiru Vi Ka Nagar","Chennai",     "", ""],
-  [14, "Egmore",           "Chennai",     "", ""],
-  [15, "Royapuram",        "Chennai",     "", ""],
-  [16, "Harbour",          "Chennai",     "", ""],
-  [17, "Chepauk-Triplicane","Chennai",    "", ""],
-  [18, "Thousand Lights",  "Chennai",     "", ""],
-  [19, "Anna Nagar",       "Chennai",     "", ""],
-  [20, "Virugambakkam",    "Chennai",     "", ""],
-  [21, "Saidapet",         "Chennai",     "", ""],
-  [22, "Thiyagaraya Nagar","Chennai",     "", ""],
-  [23, "Mylapore",         "Chennai",     "", ""],
-  [24, "Velachery",        "Chennai",     "", ""],
-  [25, "Sholinganallur",   "Chennai",     "", ""],
-  [26, "Alandur",          "Chennai",     "", ""],
-  [27, "Sriperumbudur",    "Chennai",     "", ""],
-  [28, "Pallavaram",       "Chennai",     "", ""],
-  [29, "Tambaram",         "Chennai",     "", ""],
-  [30, "Chengalpattu",     "Chengalpattu","", ""],
+  [11, "Dr. Radhakrishnan Nagar","Chennai","Maria Wilson",         ""],
+  [12, "Perambur",         "Chennai",     "C Joseph Vijay ★",     ""],
+  [13, "Kolathur",         "Chennai",     "VS Babu",              ""],
+  [14, "Villivakkam",      "Chennai",     "Adhav Arjuna",         ""],
+  [15, "Thiru-Vi-Ka-Nagar","Chennai",     "M R Pallavi",          ""],
+  [16, "Egmore",           "Chennai",     "Rajmohan",             ""],
+  [17, "Royapuram",        "Chennai",     "K V Vijayathamu",      ""],
+  [18, "Harbour",          "Chennai",     "Sinora Ashok",         ""],
+  [19, "Chepauk-Thiruvallikeni","Chennai","D. Selvam",            ""],
+  [20, "Thousand Lights",  "Chennai",     "JCD Prabhakar",        ""],
+  [21, "Anna Nagar",       "Chennai",     "V K Ramkumar",         ""],
+  [22, "Virugambakkam",    "Chennai",     "Sabarinathan",         ""],
+  [23, "Saidapet",         "Chennai",     "M. Arulprakasham",     ""],
+  [24, "Thiyagarayanagar", "Chennai",     "Bussy N Anand",        ""],
+  [25, "Mylapore",         "Chennai",     "Venkatramanan",        ""],
+  [26, "Velachery",        "Chennai",     "R. Kumar",             ""],
+  [27, "Sholinganallur",   "Chennai",     "P. Saravanamoorthy",   ""],
+  [28, "Alandur",          "Chennai",     "M. Harish",            ""],
+  [29, "Sriperumbudur",    "Chengalpattu","K. Thennarasu",        ""],
+  [30, "Pallavaram",       "Chengalpattu","J. Kamatchi",          ""],
 
-  // KANCHEEPURAM DISTRICT
-  [31, "Thiruporur",       "Chengalpattu","", ""],
-  [32, "Cheyyur",          "Chengalpattu","", ""],
-  [33, "Madurantakam",     "Chengalpattu","", ""],
-  [34, "Uthiramerur",      "Kancheepuram","", ""],
-  [35, "Kancheepuram",     "Kancheepuram","", ""],
-  [36, "Arakkonam",        "Ranipet",     "", ""],
-  [37, "Sholingur",        "Ranipet",     "", ""],
-  [38, "Katpadi",          "Vellore",     "", ""],
-  [39, "Ranipet",          "Ranipet",     "", ""],
-  [40, "Arcot",            "Ranipet",     "", ""],
+  // CHENGALPATTU / KANCHEEPURAM DISTRICT
+  [31, "Tambaram",         "Chengalpattu","Sarathkumar",          ""],
+  [32, "Chengalpattu",     "Chengalpattu","S. Thiyagarajan",      ""],
+  [33, "Thiruporur",       "Chengalpattu","Vijayaraj",            ""],
+  [34, "Cheyyur",          "Chengalpattu","K Mohanraja",          ""],
+  [35, "Madurantakam",     "Chengalpattu","Munithnam",            ""],
+  [36, "Uthiramerur",      "Kancheepuram","R V Ranjithkumar",     ""],
+  [37, "Kancheepuram",     "Kancheepuram","R. V. Ranjithkumar",   ""],
+  [38, "Arakkonam",        "Ranipet",     "V. Gandhiraj",         ""],
+  [39, "Sholingur",        "Ranipet",     "G. Kapil",             ""],
+  [40, "Katpadi",          "Vellore",     "M. Sudhakar",          ""],
 
-  // VELLORE DISTRICT
-  [41, "Vellore",          "Vellore",     "", ""],
-  [42, "Anaikattu",        "Vellore",     "", ""],
-  [43, "Kilvaithinankuppam","Vellore",    "", ""],
-  [44, "Gudiyatham",       "Vellore",     "", ""],
-  [45, "Vaniyambadi",      "Tirupathur",  "", ""],
-  [46, "Ambur",            "Tirupathur",  "", ""],
-  [47, "Jolarpet",         "Tirupathur",  "", ""],
+  // RANIPET / VELLORE DISTRICT
+  [41, "Ranipet",          "Ranipet",     "Dhaheera",             ""],
+  [42, "Arcot",            "Ranipet",     "G. Vijaymohan",        ""],
+  [43, "Vellore",          "Vellore",     "M.M. Vinoth Kannan",   ""],
+  [44, "Anaikattu",        "Vellore",     "R. Velmurugan",        ""],
+  [45, "Kilvaithinankuppam","Vellore",    "E. Thendral Kumar",    ""],
+  [46, "Gudiyattam",       "Vellore",     "K. Sindhu",            ""],
+  [47, "Vaniyambadi",      "Tirupathur",  "S. Sayed",             ""],
 
   // TIRUPATTUR DISTRICT
-  [48, "Tirupattur",       "Tirupathur",  "", ""],
-  [49, "Uthangarai",       "Krishnagiri", "", ""],
-  [50, "Bargur",           "Krishnagiri", "", ""],
+  [48, "Ambur",            "Tirupathur",  "P. Imdhiyas",          ""],
+  [49, "Jolarpet",         "Tirupathur",  "C. Munisamy",          ""],
+  [50, "Tirupattur",       "Tirupathur",  "Dr. M. Thiruppathi",   ""],
+  [51, "Uthangarai",       "Krishnagiri", "B. Kumaravel",         ""],
+  [52, "Bargur",           "Krishnagiri", "E. Muralidharan",      ""],
 
   // KRISHNAGIRI DISTRICT
-  [51, "Krishnagiri",      "Krishnagiri", "", ""],
-  [52, "Veppanahalli",     "Krishnagiri", "", ""],
-  [53, "Hosur",            "Krishnagiri", "", ""],
-  [54, "Thalli",           "Krishnagiri", "", ""],
+  [53, "Krishnagiri",      "Krishnagiri", "Muhundh R. Pandian",   ""],
+  [54, "Veppanahalli",     "Krishnagiri", "Sambangi",             ""],
+  [55, "Hosur",            "Krishnagiri", "M. Ambarish",          ""],
+  [56, "Thalli",           "Krishnagiri", "G. Suresh",            ""],
 
   // DHARMAPURI DISTRICT
-  [55, "Palacodu",         "Dharmapuri",  "", ""],
-  [56, "Pennagaram",       "Dharmapuri",  "", ""],
-  [57, "Dharmapuri",       "Dharmapuri",  "", ""],
-  [58, "Pappireddipatti",  "Dharmapuri",  "", ""],
-  [59, "Harur",            "Dharmapuri",  "", ""],
-
-  // SALEM DISTRICT
-  [60, "Mettur",           "Salem",       "", ""],
-  [61, "Edappadi",         "Salem",       "", ""],
-  [62, "Salem (West)",     "Salem",       "", ""],
-  [63, "Salem (North)",    "Salem",       "", ""],
-  [64, "Salem (South)",    "Salem",       "", ""],
-  [65, "Veerapandi",       "Salem",       "", ""],
-  [66, "Attur",            "Salem",       "", ""],
-  [67, "Yercaud",          "Salem",       "", ""],
-  [68, "Omalur",           "Salem",       "", ""],
-  [69, "Mahadanapuram",    "Salem",       "", ""],
-  [70, "Rasipuram",        "Namakkal",    "", ""],
-
-  // NAMAKKAL DISTRICT
-  [71, "Senthamangalam",   "Namakkal",    "", ""],
-  [72, "Namakkal",         "Namakkal",    "", ""],
-  [73, "Paramathi-Velur",  "Namakkal",    "", ""],
-  [74, "Tiruchengode",     "Namakkal",    "", ""],
-  [75, "Kumarapalayam",    "Namakkal",    "", ""],
-
-  // ERODE DISTRICT
-  [76, "Erode (East)",     "Erode",       "", ""],
-  [77, "Erode (West)",     "Erode",       "", ""],
-  [78, "Modakurichi",      "Erode",       "", ""],
-  [79, "Perundurai",       "Erode",       "", ""],
-  [80, "Bhavani",          "Erode",       "", ""],
-  [81, "Anthiyur",         "Erode",       "", ""],
-  [82, "Gobichettipalayam","Erode",       "", ""],
-  [83, "Bhavanisagar",     "Erode",       "", ""],
-
-  // THE NILGIRIS DISTRICT
-  [84, "Gudalur",          "The Nilgiris","", ""],
-  [85, "Udhagamandalam",   "The Nilgiris","", ""],
-  [86, "Coonoor",          "The Nilgiris","", ""],
-  [87, "Mettuppalayam",    "Coimbatore",  "", ""],
-
-  // COIMBATORE DISTRICT
-  [88, "Pollachi",         "Coimbatore",  "", ""],
-  [89, "Valparai",         "Coimbatore",  "", ""],
-  [90, "Sulur",            "Coimbatore",  "", ""],
-  [91, "Kavundampalayam",  "Coimbatore",  "", ""],
-  [92, "Coimbatore (North)","Coimbatore", "", ""],
-  [93, "Thondamuthur",     "Coimbatore",  "", ""],
-  [94, "Coimbatore (South)","Coimbatore", "", ""],
-  [95, "Singanallur",      "Coimbatore",  "", ""],
-  [96, "Kinathukadavu",    "Coimbatore",  "", ""],
-  [97, "Aravakurichi",     "Karur",       "", ""],
-
-  // KARUR DISTRICT
-  [98, "Karur",            "Karur",       "", ""],
-  [99, "Krishnarayapuram", "Karur",       "", ""],
-  [100,"Kulithalai",       "Karur",       "", ""],
-
-  // TIRUCHIRAPPALLI DISTRICT
-  [101,"Manapparai",       "Tiruchirappalli","",""],
-  [102,"Srirangam",        "Tiruchirappalli","",""],
-  [103,"Tiruchirappalli (West)","Tiruchirappalli","",""],
-  [104,"Tiruchirappalli (East)","Tiruchirappalli","",""],
-  [105,"Thiruverumbur",    "Tiruchirappalli","",""],
-  [106,"Lalgudi",          "Tiruchirappalli","",""],
-  [107,"Manachanallur",    "Tiruchirappalli","",""],
-  [108,"Musiri",           "Tiruchirappalli","",""],
-  [109,"Thuraiyur",        "Tiruchirappalli","",""],
-
-  // PERAMBALUR DISTRICT
-  [110,"Perambalur",       "Perambalur",  "", ""],
-  [111,"Kunnam",           "Perambalur",  "", ""],
-
-  // ARIYALUR DISTRICT
-  [112,"Ariyalur",         "Ariyalur",    "", ""],
-  [113,"Jayankondam",      "Ariyalur",    "", ""],
-
-  // CUDDALORE DISTRICT
-  [114,"Tittagudi",        "Cuddalore",   "", ""],
-  [115,"Vriddachalam",     "Cuddalore",   "", ""],
-  [116,"Neyveli",          "Cuddalore",   "", ""],
-  [117,"Panruti",          "Cuddalore",   "", ""],
-  [118,"Cuddalore",        "Cuddalore",   "", ""],
-  [119,"Kurinjipadi",      "Cuddalore",   "", ""],
-  [120,"Bhuvanagiri",      "Cuddalore",   "", ""],
-  [121,"Chidambaram",      "Cuddalore",   "", ""],
-  [122,"Kattumannarkoil",  "Cuddalore",   "", ""],
-
-  // MAYILADUTHURAI DISTRICT
-  [123,"Sirkazhi",         "Mayiladuthurai","",""],
-  [124,"Mayiladuthurai",   "Mayiladuthurai","",""],
-  [125,"Poompuhar",        "Mayiladuthurai","",""],
-  [126,"Nagapattinam",     "Nagapattinam","", ""],
-
-  // NAGAPATTINAM DISTRICT
-  [127,"Kilvelur",         "Nagapattinam","", ""],
-  [128,"Vedaranyam",       "Nagapattinam","", ""],
-
-  // TIRUVARUR DISTRICT
-  [129,"Thiruvarur",       "Tiruvarur",   "", ""],
-  [130,"Mannargudi",       "Tiruvarur",   "", ""],
-  [131,"Thiruthuraipoondi","Tiruvarur",   "", ""],
-  [132,"Papanasam",        "Thanjavur",   "", ""],
-
-  // THANJAVUR DISTRICT
-  [133,"Thiruvidaimarudur","Thanjavur",   "", ""],
-  [134,"Kumbakonam",       "Thanjavur",   "", ""],
-  [135,"Papanasam",        "Thanjavur",   "", ""],
-  [136,"Thanjavur",        "Thanjavur",   "", ""],
-  [137,"Orathanadu",       "Thanjavur",   "", ""],
-  [138,"Pattukkottai",     "Thanjavur",   "", ""],
-  [139,"Peravurani",       "Thanjavur",   "", ""],
-
-  // PUDUKOTTAI DISTRICT
-  [140,"Gandharvakottai",  "Pudukottai",  "", ""],
-  [141,"Viralimalai",      "Pudukottai",  "", ""],
-  [142,"Pudukottai",       "Pudukottai",  "", ""],
-  [143,"Thirumayam",       "Pudukottai",  "", ""],
-  [144,"Alangudi",         "Pudukottai",  "", ""],
-
-  // SIVAGANGA DISTRICT
-  [145,"Aranthangi",       "Pudukottai",  "", ""],
-  [146,"Karaikudi",        "Sivaganga",   "", ""],
-  [147,"Manamadurai",      "Sivaganga",   "", ""],
-  [148,"Sivaganga",        "Sivaganga",   "", ""],
-  [149,"Virudhunagar",     "Virudhunagar","", ""],
-
-  // VIRUDHUNAGAR DISTRICT
-  [150,"Aruppukkottai",    "Virudhunagar","", ""],
-  [151,"Rajapalayam",      "Virudhunagar","", ""],
-  [152,"Srivilliputhur",   "Virudhunagar","", ""],
-  [153,"Sattur",           "Virudhunagar","", ""],
-  [154,"Sivakasi",         "Virudhunagar","", ""],
-  [155,"Sholavandan",      "Madurai",     "", ""],
-
-  // MADURAI DISTRICT
-  [156,"Madurai East",     "Madurai",     "", ""],
-  [157,"Madurai North",    "Madurai",     "", ""],
-  [158,"Madurai South",    "Madurai",     "", ""],
-  [159,"Madurai Central",  "Madurai",     "", ""],
-  [160,"Madurai West",     "Madurai",     "", ""],
-  [161,"Thirparankundram", "Madurai",     "", ""],
-  [162,"Usilampatti",      "Madurai",     "", ""],
-  [163,"Melur",            "Madurai",     "", ""],
-  [164,"Thirumangalam",    "Madurai",     "", ""],
-
-  // DINDIGUL DISTRICT
-  [165,"Natham",           "Dindigul",    "", ""],
-  [166,"Dindigul",         "Dindigul",    "", ""],
-  [167,"Vedasandur",       "Dindigul",    "", ""],
-  [168,"Palani",           "Dindigul",    "", ""],
-  [169,"Oddanchatram",     "Dindigul",    "", ""],
-  [170,"Athoor",           "Dindigul",    "", ""],
-  [171,"Nilakkottai",      "Dindigul",    "", ""],
-
-  // THENI DISTRICT
-  [172,"Bodinayakkanur",   "Theni",       "", ""],
-  [173,"Cumbum",           "Theni",       "", ""],
-  [174,"Andipatti",        "Theni",       "", ""],
-  [175,"Periyakulam",      "Theni",       "", ""],
-
-  // RAMANATHAPURAM DISTRICT
-  [176,"Paramakudi",       "Ramanathapuram","",""],
-  [177,"Tiruvadanai",      "Ramanathapuram","",""],
-  [178,"Ramanathapuram",   "Ramanathapuram","",""],
-  [179,"Mudukulathur",     "Ramanathapuram","",""],
-
-  // THOOTHUKUDI DISTRICT
-  [180,"Vilathikulam",     "Thoothukudi", "", ""],
-  [181,"Ottapidaram",      "Thoothukudi", "", ""],
-  [182,"Thoothukudi",      "Thoothukudi", "", ""],
-  [183,"Tiruchendur",      "Thoothukudi", "", ""],
-  [184,"Srivaikuntam",     "Thoothukudi", "", ""],
-  [185,"Kovilpatti",       "Thoothukudi", "", ""],
-
-  // TIRUNELVELI DISTRICT
-  [186,"Sankarankovil",    "Tirunelveli", "", ""],
-  [187,"Vasudevanallur",   "Tirunelveli", "", ""],
-  [188,"Kadayanallur",     "Tirunelveli", "", ""],
-  [189,"Tenkasi",          "Tenkasi",     "", ""],
-  [190,"Alangulam",        "Tirunelveli", "", ""],
-  [191,"Tirunelveli",      "Tirunelveli", "", ""],
-  [192,"Ambasamudram",     "Tirunelveli", "", ""],
-  [193,"Palayamkottai",    "Tirunelveli", "", ""],
-  [194,"Nanguneri",        "Tirunelveli", "", ""],
-  [195,"Radhapuram",       "Tirunelveli", "", ""],
-
-  // TENKASI DISTRICT
-  [196,"Shencottah",       "Tenkasi",     "", ""],
-  [197,"Tenkasi",          "Tenkasi",     "", ""],
-  [198,"Shenkottai",       "Tenkasi",     "", ""],
-
-  // KANYAKUMARI DISTRICT
-  [199,"Padmanabhapuram",  "Kanyakumari", "", ""],
-  [200,"Vilavancode",      "Kanyakumari", "", ""],
-  [201,"Killiyoor",        "Kanyakumari", "", ""],
-  [202,"Nagercoil",        "Kanyakumari", "", ""],
-  [203,"Colachel",         "Kanyakumari", "", ""],
-  [204,"Padmanabhapuram",  "Kanyakumari", "", ""],
-
-  // TIRUPPUR DISTRICT
-  [205,"Dharapuram",       "Tiruppur",    "", ""],
-  [206,"Kangayam",         "Tiruppur",    "", ""],
-  [207,"Avinashi",         "Tiruppur",    "", ""],
-  [208,"Tiruppur (North)", "Tiruppur",    "", ""],
-  [209,"Tiruppur (South)", "Tiruppur",    "", ""],
-  [210,"Palladam",         "Tiruppur",    "", ""],
-  [211,"Udumalaipettai",   "Tiruppur",    "", ""],
-  [212,"Madathukulam",     "Tiruppur",    "", ""],
-
-  // DINDIGUL (additional)
-  [213,"Kodaikanal",       "Dindigul",    "", ""],
-
-  // VILLUPURAM DISTRICT
-  [214,"Ulundurpet",       "Villupuram",  "", ""],
-  [215,"Rishivandiyam",    "Villupuram",  "", ""],
-  [216,"Sankarapuram",     "Villupuram",  "", ""],
-  [217,"Tindivanam",       "Villupuram",  "", ""],
-  [218,"Vanur",            "Villupuram",  "", ""],
-  [219,"Villupuram",       "Villupuram",  "", ""],
-  [220,"Vikravandi",       "Villupuram",  "", ""],
-  [221,"Tirukoilur",       "Villupuram",  "", ""],
-  [222,"Kallakurichi",     "Kallakurichi","", ""],
-
-  // KALLAKURICHI DISTRICT
-  [223,"Chinnasalem",      "Kallakurichi","", ""],
-  [224,"Attur",            "Salem",       "", ""],
-  [225,"Gangavalli",       "Salem",       "", ""],
+  [57, "Palacode",         "Dharmapuri",  "R. Gopi",              ""],
+  [58, "Pennagaram",       "Dharmapuri",  "Kajendran",            ""],
+  [59, "Dharmapuri",       "Dharmapuri",  "M. Sivan",             ""],
+  [60, "Pappireddippatti", "Dharmapuri",  "S. Thilavathi",        ""],
+  [61, "Harur",            "Dharmapuri",  "K. Rakesh",            ""],
 
   // TIRUVANNAMALAI DISTRICT
-  [226,"Tiruvannamalai",   "Tiruvannamalai","",""],
-  [227,"Kilpennathur",     "Tiruvannamalai","",""],
-  [228,"Polur",            "Tiruvannamalai","",""],
-  [229,"Arani",            "Tiruvannamalai","",""],
-  [230,"Cheyyar",          "Tiruvannamalai","",""],
-  [231,"Vandavasi",        "Tiruvannamalai","",""],
+  [62, "Chengam",          "Tiruvannamalai","K Bharathidhasan",   ""],
+  [63, "Tiruvannamalai",   "Tiruvannamalai","Arul Arumugam",      ""],
+  [64, "Kilpennathur",     "Tiruvannamalai","D Raja",             ""],
+  [65, "Kalasapakkam",     "Tiruvannamalai","C. Elumalai",        ""],
+  [66, "Polur",            "Tiruvannamalai","R. Abishek",         ""],
+  [67, "Arani",            "Tiruvannamalai","A. Venkatesan Kumar",""],
+  [68, "Cheyyar",          "Tiruvannamalai","V.C.K. Mohan",       ""],
+  [69, "Vandavasi",        "Tiruvannamalai","Udhayakumar",        ""],
 
-  // KANCHEEPURAM (additional)
-  [232,"Kancheepuram",     "Kancheepuram","", ""],
-  [233,"Uthiramerur",      "Kancheepuram","", ""],
-  [234,"Tambaram",         "Kancheepuram","", ""],
+  // VILLUPURAM DISTRICT
+  [70, "Gingee",           "Villupuram",  "V. Chandrasekaran",    ""],
+  [71, "Mailam",           "Villupuram",  "A. Vijay Niranjan",    ""],
+  [72, "Tindivanam",       "Villupuram",  "S. Sakthivel",         ""],
+  [73, "Vanur",            "Villupuram",  "G.P. Suresh",          ""],
+  [74, "Villupuram",       "Villupuram",  "N. Mohanraj",          ""],
+  [75, "Vikravandi",       "Villupuram",  "A. Vijay Vadivel",     ""],
+  [76, "Tirukkoyilur",     "Villupuram",  "Barani Balaji",        ""],
+  [77, "Ulundurpettai",    "Villupuram",  "M. Sudhakar",          ""],
+  [78, "Rishivandiyam",    "Villupuram",  "G. Ashokkumar",        ""],
+  [79, "Sankarapuram",     "Villupuram",  "A. Jagadeesan",        ""],
+
+  // KALLAKURICHI DISTRICT
+  [80, "Kallakurichi",     "Kallakurichi","C. Arul Vignesh",      ""],
+  [81, "Gangavalli",       "Salem",       "V. Sujatha",           ""],
+
+  // SALEM DISTRICT
+  [82, "Attur",            "Salem",       "R. Selvabharathi",     ""],
+  [83, "Yercaud",          "Salem",       "J. Lakshmi",           ""],
+  [84, "Omalur",           "Salem",       "R. V. Adhiyaman",      ""],
+  [85, "Mettur",           "Salem",       "K. Selvam",            ""],
+  [86, "Edappadi",         "Salem",       "M. Arunkumar",         ""],
+  [87, "Sankari",          "Salem",       "Senthilkumar",         ""],
+  [88, "Salem (West)",     "Salem",       "S. Lakshmanan",        ""],
+  [89, "Salem (North)",    "Salem",       "K. Sivakumar",         ""],
+  [90, "Salem (South)",    "Salem",       "A. Vijay Tamilan Parthiban",""],
+  [91, "Veerapandi",       "Salem",       "M.S. Palanivel",       ""],
+
+  // NAMAKKAL DISTRICT
+  [92, "Rasipuram",        "Namakkal",    "Lokesh Dhanapal",      ""],
+  [93, "Senthamangalam",   "Namakkal",    "P. Chandrasekar",      ""],
+  [94, "Namakkal",         "Namakkal",    "T.S. Dileep",          ""],
+  [95, "Paramathi-Velur",  "Namakkal",    "A. Nandhakumar",       ""],
+  [96, "Tiruchengode",     "Namakkal",    "K.G. Arunraj",         ""],
+  [97, "Kumarapalayam",    "Namakkal",    "C. Vijayalakshmi",     ""],
+
+  // ERODE DISTRICT
+  [98, "Erode (East)",     "Erode",       "M. Vijay Balaji",      ""],
+  [99, "Erode (West)",     "Erode",       "K.K. Anand Mohan",     ""],
+  [100,"Modakkurichi",     "Erode",       "D. Shanmugam",         ""],
+  [101,"Dharapuram",       "Tiruppur",    "S. Gowri Chithra",     ""],
+  [102,"Kangayam",         "Tiruppur",    "T. Mani",              ""],
+  [103,"Perundurai",       "Erode",       "V. T. Arunachalam",    ""],
+  [104,"Bhavani",          "Erode",       "M.P. Balakrishnan",    ""],
+  [105,"Anthiyur",         "Erode",       "M. Vijay Venkatesh",   ""],
+  [106,"Gobichettipalayam","Erode",       "K. A. Sengottaiyan",   ""],
+  [107,"Bhavanisagar",     "Erode",       "V.P. Tamil Selvi",     ""],
+
+  // THE NILGIRIS DISTRICT
+  [108,"Udhagamandalam",   "The Nilgiris","R. Ibrahim",           ""],
+  [109,"Gudalur",          "The Nilgiris","A. Deepak Sai Kishore",""],
+  [110,"Coonoor",          "The Nilgiris","C. Thangaraj",         ""],
+  [111,"Mettuppalayam",    "Coimbatore",  "N. Sunil Anand",       ""],
+
+  // TIRUPPUR DISTRICT
+  [112,"Avanashi",         "Tiruppur",    "S. Kamali",            ""],
+  [113,"Tiruppur (North)", "Tiruppur",    "Sathyabama",           ""],
+  [114,"Tiruppur (South)", "Tiruppur",    "S. Balamurugan",       ""],
+  [115,"Palladam",         "Tiruppur",    "K. Ramkumar",          ""],
+
+  // COIMBATORE DISTRICT
+  [116,"Sulur",            "Coimbatore",  "N.M. Sukumar",         ""],
+  [117,"Kavundampalayam",  "Coimbatore",  "R. T. Kanimozhi",      ""],
+  [118,"Coimbatore (North)","Coimbatore", "V. Sampathkumar",      ""],
+  [119,"Thondamuthur",     "Coimbatore",  "R. Sathish Raju",      ""],
+  [120,"Coimbatore (South)","Coimbatore", "V. Senthil Kumar",     ""],
+  [121,"Singanallur",      "Coimbatore",  "K.S. Giriprashath",    ""],
+  [122,"Kinathukadavu",    "Coimbatore",  "K. Vignesh",           ""],
+  [123,"Pollachi",         "Coimbatore",  "G. Ramanathan",        ""],
+  [124,"Valparai",         "Coimbatore",  "Dr. Sreedharan",       ""],
+
+  // TIRUPPUR (additional)
+  [125,"Udumalaipettai",   "Tiruppur",    "G. K. Shankar",        ""],
+  [126,"Madathukulam",     "Tiruppur",    "R. Thirumalai",        ""],
+
+  // DINDIGUL DISTRICT
+  [127,"Palani",           "Dindigul",    "Dr. M. Praveenkumar",  ""],
+  [128,"Oddanchatram",     "Dindigul",    "S. Mohan",             ""],
+  [129,"Athoor",           "Dindigul",    "N. Kalaiselvi",        ""],
+  [130,"Nilakkottai",      "Dindigul",    "R. Ayyanar",           ""],
+  [131,"Natham",           "Dindigul",    "L. L. Ramesh",         ""],
+  [132,"Dindigul",         "Dindigul",    "Nazeer Raja",          ""],
+  [133,"Vedasandur",       "Dindigul",    "Dr N. Nagajothi",      ""],
+
+  // KARUR DISTRICT
+  [134,"Aravakurichi",     "Karur",       "Karthikeyan",          ""],
+  [135,"Karur",            "Karur",       "V.P. Mathiyalagan",    ""],
+  [136,"Krishnarayapuram", "Karur",       "S. Madhan",            ""],
+  [137,"Kulithalai",       "Karur",       "G. Balasubramani",     ""],
+
+  // TIRUCHIRAPPALLI DISTRICT
+  [138,"Manapparai",       "Tiruchirappalli","R. Kathiravan",      ""],
+  [139,"Srirangam",        "Tiruchirappalli","S. Ramesh",          ""],
+  [140,"Tiruchirappalli (West)","Tiruchirappalli","G. Ramamoorthy",""],
+  [141,"Tiruchirappalli (East)","Tiruchirappalli","C Joseph Vijay ★",""],
+  [142,"Thiruverumbur",    "Tiruchirappalli","S. Viji",            ""],
+  [143,"Lalgudi",          "Tiruchirappalli","K. P Krishnan",      ""],
+  [144,"Manachanallur",    "Tiruchirappalli","V. Saravanan",       ""],
+  [145,"Musiri",           "Tiruchirappalli","N. Vignesh",         ""],
+  [146,"Thuraiyur",        "Tiruchirappalli","K. Sivakumar",       ""],
+
+  // PERAMBALUR DISTRICT
+  [147,"Perambalur",       "Perambalur",  "K. Sivakumar",         ""],
+  [148,"Kunnam",           "Perambalur",  "M. Revathi",           ""],
+
+  // ARIYALUR DISTRICT
+  [149,"Ariyalur",         "Ariyalur",    "M. Sivakumar",         ""],
+  [150,"Jayankondam",      "Ariyalur",    "Kavitha G Rajendran",  ""],
+
+  // CUDDALORE DISTRICT
+  [151,"Tittagudi",        "Cuddalore",   "Rajasekar",            ""],
+  [152,"Vridhachalam",     "Cuddalore",   "S. Vijay",             ""],
+  [153,"Neyveli",          "Cuddalore",   "K. Anand",             ""],
+  [154,"Panruti",          "Cuddalore",   "M. Manikandan",        ""],
+  [155,"Cuddalore",        "Cuddalore",   "V. Rajkumar",          ""],
+  [156,"Kurinjipadi",      "Cuddalore",   "Dr Rajkumar",          ""],
+  [157,"Bhuvanagiri",      "Cuddalore",   "D. M. Mahalingam",     ""],
+  [158,"Chidambaram",      "Cuddalore",   "Dr N. Pari",           ""],
+  [159,"Kattumannarkoil",  "Cuddalore",   "S. Srinivasan",        ""],
+
+  // MAYILADUTHURAI DISTRICT
+  [160,"Sirkazhi",         "Mayiladuthurai","C.S. Gopinath",      ""],
+  [161,"Mayiladuthurai",   "Mayiladuthurai","C.S. Arun Rasheeth", ""],
+  [162,"Poompuhar",        "Mayiladuthurai","K. Vijayalayan",     ""],
+
+  // NAGAPATTINAM DISTRICT
+  [163,"Nagapattinam",     "Nagapattinam","N. Sukumar",           ""],
+  [164,"Kilvelur",         "Nagapattinam","D.A.P. Senthilpandiyan",""],
+  [165,"Vedaranyam",       "Nagapattinam","A. Kingsley Gerald",   ""],
+
+  // TIRUVARUR DISTRICT
+  [166,"Thiruthuraipoondi","Tiruvarur",   "S. Pandiyan",          ""],
+  [167,"Mannargudi",       "Tiruvarur",   "UVM Rajarajan",        ""],
+  [168,"Thiruvarur",       "Tiruvarur",   "V. Veeramani",         ""],
+  [169,"Nannilam",         "Tiruvarur",   "S. Prabhakaran",       ""],
+
+  // THANJAVUR DISTRICT
+  [170,"Thiruvidaimarudur","Thanjavur",   "S. Prabhakaran",       ""],
+  [171,"Kumbakonam",       "Thanjavur",   "R. Vinoth",            ""],
+  [172,"Papanasam",        "Thanjavur",   "U. Azarudeen",         ""],
+  [173,"Thiruvaiyaru",     "Thanjavur",   "M. Manikandan",        ""],
+  [174,"Thanjavur",        "Thanjavur",   "R. Vijay Saravanan",   ""],
+  [175,"Orathanadu",       "Thanjavur",   "Dr. K Aravind",        ""],
+  [176,"Pattukkottai",     "Thanjavur",   "C Madhan",             ""],
+  [177,"Peravurani",       "Thanjavur",   "T Chandra Kaandeeban", ""],
+
+  // PUDUKOTTAI DISTRICT
+  [178,"Gandharvakottai",  "Pudukottai",  "N Subramanian",        ""],
+  [179,"Viralimalai",      "Pudukottai",  "P Murugesan",          ""],
+  [180,"Pudukkottai",      "Pudukottai",  "K.M Shareef",          ""],
+  [181,"Thirumayam",       "Pudukottai",  "C Sindhamani",         ""],
+  [182,"Alangudi",         "Pudukottai",  "Durai Kandasamy",      ""],
+  [183,"Aranthangi",       "Pudukottai",  "J Mohamad Parvez",     ""],
+
+  // SIVAGANGA DISTRICT
+  [184,"Karaikudi",        "Sivaganga",   "Dr. T. K. Prabhu",     ""],
+  [185,"Tiruppattur",      "Sivaganga",   "Srinivasa Sethupathi", ""],
+  [186,"Sivaganga",        "Sivaganga",   "Kulandhai Rani Nachiar",""],
+  [187,"Manamadurai",      "Sivaganga",   "D. Ilangovan",         ""],
+
+  // MADURAI DISTRICT
+  [188,"Melur",            "Madurai",     "A. Madurai Veeran",    ""],
+  [189,"Madurai East",     "Madurai",     "S. Karthikeyan",       ""],
+  [190,"Sholavandan",      "Madurai",     "M.V. Karuppaiah",      ""],
+  [191,"Madurai North",    "Madurai",     "A. Kallanai",          ""],
+  [192,"Madurai South",    "Madurai",     "J. Jo Peter",          ""],
+  [193,"Madurai Central",  "Madurai",     "V.N.S. Mustafa",       ""],
+  [194,"Madurai West",     "Madurai",     "S.R. Thangapandi",     ""],
+  [195,"Thiruparankundram","Madurai",     "CTR. Nirmalkumar",     ""],
+  [196,"Thirumangalam",    "Madurai",     "N. Sathish Kumar",     ""],
+  [197,"Usilampatti",      "Madurai",     "Vijay Mahalingam",     ""],
+
+  // THENI DISTRICT
+  [198,"Andipatti",        "Theni",       "V. Pandi",             ""],
+  [199,"Periyakulam",      "Theni",       "G. Sabari",            ""],
+  [200,"Bodinayakanur",    "Theni",       "S. Prakash",           ""],
+  [201,"Cumbum",           "Theni",       "P.L.A Jaganath",       ""],
+
+  // VIRUDHUNAGAR DISTRICT
+  [202,"Rajapalayam",      "Virudhunagar","K. Jagadeeswari",      ""],
+  [203,"Srivilliputhur",   "Virudhunagar","A. Karthik",           ""],
+  [204,"Sattur",           "Virudhunagar","M. Ajith",             ""],
+  [205,"Sivakasi",         "Virudhunagar","Keerthana",            ""],
+  [206,"Virudhunagar",     "Virudhunagar","S.P. Selvam",          ""],
+  [207,"Aruppukkottai",    "Virudhunagar","K. Karthik Kumar",     ""],
+  [208,"Tiruchuli",        "Virudhunagar","S. Samayan",           ""],
+
+  // RAMANATHAPURAM DISTRICT
+  [209,"Paramakudi",       "Ramanathapuram","G. Gopinathan",      ""],
+  [210,"Tiruvadanai",      "Ramanathapuram","V.K. Raji",          ""],
+  [211,"Ramanathapuram",   "Ramanathapuram","E.K. Sahul Hameed",  ""],
+  [212,"Mudhukulathur",    "Ramanathapuram","V. Malarvizhi Jayabala",""],
+
+  // THOOTHUKUDI DISTRICT
+  [213,"Vilathikulam",     "Thoothukudi", "Kasiram",              ""],
+  [214,"Thoothukudi",      "Thoothukudi", "A. Srinath",           ""],
+  [215,"Tiruchendur",      "Thoothukudi", "K. Murugan",           ""],
+  [216,"Srivaikuntam",     "Thoothukudi", "G. Saravanan",         ""],
+  [217,"Ottapidaram",      "Thoothukudi", "P. Madhanraja",        ""],
+  [218,"Kovilpatti",       "Thoothukudi", "S. Balasubramaniam",   ""],
+
+  // TIRUNELVELI DISTRICT
+  [219,"Sankarankovil",    "Tirunelveli", "C. Ramarajan",         ""],
+  [220,"Vasudevanallur",   "Tirunelveli", "R. Amudha Rani",       ""],
+  [221,"Kadayanallur",     "Tirunelveli", "R.K. Abdul Jalil",     ""],
+
+  // TENKASI DISTRICT
+  [222,"Tenkasi",          "Tenkasi",     "A. Rajaprakash",       ""],
+  [223,"Alangulam",        "Tenkasi",     "V. Vipin Chakravarthi",""],
+
+  // TIRUNELVELI DISTRICT (continued)
+  [224,"Tirunelveli",      "Tirunelveli", "R.S. Murugan",         ""],
+  [225,"Ambasamudram",     "Tirunelveli", "S. Rajagopal",         ""],
+  [226,"Palayamkottai",    "Tirunelveli", "S. Maria John",        ""],
+  [227,"Nanguneri",        "Tirunelveli", "Rettiyapatti Narayanan",""],
+  [228,"Radhapuram",       "Tirunelveli", "K. Satheesh Christopher",""],
+
+  // KANYAKUMARI DISTRICT
+  [229,"Kanniyakumari",    "Kanyakumari", "S.R. Madhavan",        ""],
+  [230,"Nagercoil",        "Kanyakumari", "G. King",              ""],
+  [231,"Colachel",         "Kanyakumari", "Prem Alex Lawrence",   ""],
+  [232,"Padmanabhapuram",  "Kanyakumari", "S. Krishnakumar",      ""],
+  [233,"Vilavancode",      "Kanyakumari", "K. Michael Kumar",     ""],
+  [234,"Killiyoor",        "Kanyakumari", "S. Sabeer",            ""],
 ];
 
 // Build district list
@@ -764,12 +790,14 @@ function getInitials(name) {
 function buildCard(item) {
   const [ecNum, constituency, district, candidateName, photoUrl] = item;
   const card = document.createElement('div');
-  card.className = 'candidate-card';
+  const isLeader = candidateName.includes('★');
+  card.className = 'candidate-card' + (isLeader ? ' is-leader' : '');
+  const cleanName = candidateName.replace(' ★', '').trim();
   card.dataset.constituency = constituency.toLowerCase();
   card.dataset.district = district.toLowerCase();
-  card.dataset.candidate = candidateName.toLowerCase();
+  card.dataset.candidate = cleanName.toLowerCase();
 
-  const displayName = candidateName || 'To Be Announced';
+  const displayName = cleanName || 'To Be Announced';
   const initials = getInitials(displayName);
 
   const photoSection = photoUrl
@@ -792,6 +820,7 @@ function buildCard(item) {
       <div class="candidate-name">${displayName}</div>
       <div class="constituency-name">${constituency}</div>
       <div class="district-name">${district} District</div>
+      ${isLeader ? '<div class="leader-badge">★ Party Leader</div>' : ''}
     </div>`;
   return card;
 }
