@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVK – Know Your Candidates 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:    #c0392b;
+    --red2:   #e74c3c;
+    --gold:   #f39c12;
+    --gold2:  #f1c40f;
+    --dark:   #0d0d0d;
+    --dark2:  #1a1a1a;
+    --dark3:  #242424;
+    --card:   #1e1e1e;
+    --border: #2e2e2e;
+    --text:   #e8e8e8;
+    --muted:  #888;
+    --white:  #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Lato', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a0000 50%, #0d0d0d 100%);
+    border-bottom: 3px solid var(--red);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(192,57,43,0.04) 40px,
+      rgba(192,57,43,0.04) 41px
+    );
+  }
+  .header-accent {
+    height: 5px;
+    background: linear-gradient(90deg, var(--red), var(--gold), var(--red2), var(--gold2), var(--red));
+    background-size: 400% 100%;
+    animation: gradShift 6s linear infinite;
+  }
+  @keyframes gradShift {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+  }
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 28px 24px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .party-emblem {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--red), var(--red2));
+    border: 3px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--white);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    box-shadow: 0 0 30px rgba(192,57,43,0.4);
+  }
+  .header-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+  }
+  .header-text h1 span { color: var(--gold); }
+  .header-text p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .header-stats {
+    margin-left: auto;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .header-stats .big {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .header-stats .lbl {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ─── CONTROLS ─── */
+  .controls-bar {
+    background: var(--dark2);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+  .controls-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    width: 16px; height: 16px;
+  }
+  input[type="text"] {
+    width: 100%;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 14px 10px 38px;
+    border-radius: 6px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input[type="text"]:focus { border-color: var(--red); }
+  input[type="text"]::placeholder { color: var(--muted); }
+
+  select {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 36px 10px 14px;
+    border-radius: 6px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    min-width: 180px;
+  }
+  select:focus { border-color: var(--red); }
+
+  .results-count {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .results-count span { color: var(--gold); font-weight: 700; }
+
+  /* ─── GRID ─── */
+  .grid-container {
+    max-width: 1400px;
+    margin: 28px auto;
+    padding: 0 24px 60px;
+  }
+  .candidates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  /* ─── CARD ─── */
+  .candidate-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    position: relative;
+    cursor: default;
+  }
+  .candidate-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(192,57,43,0.25);
+    border-color: var(--red);
+  }
+  .candidate-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    opacity: 0;
+    transition: opacity 0.22s;
+  }
+  .candidate-card:hover::before { opacity: 1; }
+
+  .card-photo {
+    width: 100%;
+    aspect-ratio: 3/3.5;
+    background: var(--dark3);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .candidate-card:hover .card-photo img { transform: scale(1.04); }
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #1a1a1a, #2a1010);
+  }
+  .photo-placeholder .initials {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--red), var(--red2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.15);
+  }
+  .photo-placeholder .ph-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .card-num {
+    position: absolute;
+    top: 8px; left: 8px;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(192,57,43,0.5);
+    border-radius: 4px;
+    padding: 2px 7px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .card-info {
+    padding: 12px 14px 14px;
+  }
+  .candidate-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .constituency-name {
+    font-size: 0.8rem;
+    color: var(--red2);
+    font-weight: 600;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .district-name {
+    font-size: 0.73rem;
+    color: var(--muted);
+    margin-top: 3px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  /* ─── NO RESULTS ─── */
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+  }
+  .no-results svg { color: var(--border); margin-bottom: 16px; }
+  .no-results p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 20px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  footer strong { color: var(--red2); }
+
+  /* ─── DISTRICT LABEL (separator) ─── */
+  .district-header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .district-header .dh-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .district-header .dh-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  @media (max-width: 600px) {
+    .header-inner { flex-wrap: wrap; }
+    .header-stats { margin-left: 0; }
+    .candidates-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER ACCENT -->
+<div class="header-accent"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="party-emblem">TVK</div>
+    <div class="header-text">
+      <h1>TVK – <span>Know Your Candidates</span> 2026</h1>
+      <p>Tamilaga Vettri Kazhagam &nbsp;·&nbsp; Tamil Nadu Legislative Assembly Elections</p>
+    </div>
+    <div class="header-stats">
+      <div class="big">234</div>
+      <div class="lbl">Constituencies</div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTROLS -->
+<div class="controls-bar">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search candidate, constituency or district…">
+    </div>
+    <select id="districtFilter">
+      <option value="">All Districts</option>
+    </select>
+    <select id="sortSelect">
+      <option value="default">Default Order (EC)</option>
+      <option value="candidate">Candidate Name A–Z</option>
+      <option value="constituency">Constituency A–Z</option>
+      <option value="district">District A–Z</option>
+    </select>
+    <div class="results-count">Showing <span id="countDisplay">234</span> of 234</div>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="grid-container">
+  <div class="candidates-grid" id="candidatesGrid"></div>
+</div>
+
+<footer>
+  &copy; 2026 &nbsp;|&nbsp; <strong>Tamilaga Vettri Kazhagam (TVK)</strong> &nbsp;|&nbsp; TVK – Know Your Candidates 2026 &nbsp;|&nbsp; All Rights Reserved
+</footer>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+//  COMPLETE 234 CONSTITUENCY DATA
+//  Format: [ecOrder, constituencyName, districtName, candidateName, photoUrl]
+//  photoUrl: '' = placeholder (to be filled by party)
+// ─────────────────────────────────────────────────────────────
+const DATA = [
+  // TIRUVALLUR DISTRICT
+  [1,  "Ponneri",          "Tiruvallur",  "", ""],
+  [2,  "Tiruttani",        "Tiruvallur",  "", ""],
+  [3,  "Gummidipoondi",    "Tiruvallur",  "", ""],
+  [4,  "Poonamallee",      "Tiruvallur",  "", ""],
+  [5,  "Avadi",            "Tiruvallur",  "", ""],
+  [6,  "Maduravoyal",      "Tiruvallur",  "", ""],
+  [7,  "Ambattur",         "Tiruvallur",  "", ""],
+  [8,  "Tiruvallur",       "Tiruvallur",  "", ""],
+  [9,  "Thiruvottiyur",    "Tiruvallur",  "", ""],
+  [10, "Perambur",         "Tiruvallur",  "", ""],
+
+  // CHENNAI DISTRICT
+  [11, "Kolathur",         "Chennai",     "", ""],
+  [12, "Villivakkam",      "Chennai",     "", ""],
+  [13, "Thiru Vi Ka Nagar","Chennai",     "", ""],
+  [14, "Egmore",           "Chennai",     "", ""],
+  [15, "Royapuram",        "Chennai",     "", ""],
+  [16, "Harbour",          "Chennai",     "", ""],
+  [17, "Chepauk-Triplicane","Chennai",    "", ""],
+  [18, "Thousand Lights",  "Chennai",     "", ""],
+  [19, "Anna Nagar",       "Chennai",     "", ""],
+  [20, "Virugambakkam",    "Chennai",     "", ""],
+  [21, "Saidapet",         "Chennai",     "", ""],
+  [22, "Thiyagaraya Nagar","Chennai",     "", ""],
+  [23, "Mylapore",         "Chennai",     "", ""],
+  [24, "Velachery",        "Chennai",     "", ""],
+  [25, "Sholinganallur",   "Chennai",     "", ""],
+  [26, "Alandur",          "Chennai",     "", ""],
+  [27, "Sriperumbudur",    "Chennai",     "", ""],
+  [28, "Pallavaram",       "Chennai",     "", ""],
+  [29, "Tambaram",         "Chennai",     "", ""],
+  [30, "Chengalpattu",     "Chengalpattu","", ""],
+
+  // KANCHEEPURAM DISTRICT
+  [31, "Thiruporur",       "Chengalpattu","", ""],
+  [32, "Cheyyur",          "Chengalpattu","", ""],
+  [33, "Madurantakam",     "Chengalpattu","", ""],
+  [34, "Uthiramerur",      "Kancheepuram","", ""],
+  [35, "Kancheepuram",     "Kancheepuram","", ""],
+  [36, "Arakkonam",        "Ranipet",     "", ""],
+  [37, "Sholingur",        "Ranipet",     "", ""],
+  [38, "Katpadi",          "Vellore",     "", ""],
+  [39, "Ranipet",          "Ranipet",     "", ""],
+  [40, "Arcot",            "Ranipet",     "", ""],
+
+  // VELLORE DISTRICT
+  [41, "Vellore",          "Vellore",     "", ""],
+  [42, "Anaikattu",        "Vellore",     "", ""],
+  [43, "Kilvaithinankuppam","Vellore",    "", ""],
+  [44, "Gudiyatham",       "Vellore",     "", ""],
+  [45, "Vaniyambadi",      "Tirupathur",  "", ""],
+  [46, "Ambur",            "Tirupathur",  "", ""],
+  [47, "Jolarpet",         "Tirupathur",  "", ""],
+
+  // TIRUPATTUR DISTRICT
+  [48, "Tirupattur",       "Tirupathur",  "", ""],
+  [49, "Uthangarai",       "Krishnagiri", "", ""],
+  [50, "Bargur",           "Krishnagiri", "", ""],
+
+  // KRISHNAGIRI DISTRICT
+  [51, "Krishnagiri",      "Krishnagiri", "", ""],
+  [52, "Veppanahalli",     "Krishnagiri", "", ""],
+  [53, "Hosur",            "Krishnagiri", "", ""],
+  [54, "Thalli",           "Krishnagiri", "", ""],
+
+  // DHARMAPURI DISTRICT
+  [55, "Palacodu",         "Dharmapuri",  "", ""],
+  [56, "Pennagaram",       "Dharmapuri",  "", ""],
+  [57, "Dharmapuri",       "Dharmapuri",  "", ""],
+  [58, "Pappireddipatti",  "Dharmapuri",  "", ""],
+  [59, "Harur",            "Dharmapuri",  "", ""],
+
+  // SALEM DISTRICT
+  [60, "Mettur",           "Salem",       "", ""],
+  [61, "Edappadi",         "Salem",       "", ""],
+  [62, "Salem (West)",     "Salem",       "", ""],
+  [63, "Salem (North)",    "Salem",       "", ""],
+  [64, "Salem (South)",    "Salem",       "", ""],
+  [65, "Veerapandi",       "Salem",       "", ""],
+  [66, "Attur",            "Salem",       "", ""],
+  [67, "Yercaud",          "Salem",       "", ""],
+  [68, "Omalur",           "Salem",       "", ""],
+  [69, "Mahadanapuram",    "Salem",       "", ""],
+  [70, "Rasipuram",        "Namakkal",    "", ""],
+
+  // NAMAKKAL DISTRICT
+  [71, "Senthamangalam",   "Namakkal",    "", ""],
+  [72, "Namakkal",         "Namakkal",    "", ""],
+  [73, "Paramathi-Velur",  "Namakkal",    "", ""],
+  [74, "Tiruchengode",     "Namakkal",    "", ""],
+  [75, "Kumarapalayam",    "Namakkal",    "", ""],
+
+  // ERODE DISTRICT
+  [76, "Erode (East)",     "Erode",       "", ""],
+  [77, "Erode (West)",     "Erode",       "", ""],
+  [78, "Modakurichi",      "Erode",       "", ""],
+  [79, "Perundurai",       "Erode",       "", ""],
+  [80, "Bhavani",          "Erode",       "", ""],
+  [81, "Anthiyur",         "Erode",       "", ""],
+  [82, "Gobichettipalayam","Erode",       "", ""],
+  [83, "Bhavanisagar",     "Erode",       "", ""],
+
+  // THE NILGIRIS DISTRICT
+  [84, "Gudalur",          "The Nilgiris","", ""],
+  [85, "Udhagamandalam",   "The Nilgiris","", ""],
+  [86, "Coonoor",          "The Nilgiris","", ""],
+  [87, "Mettuppalayam",    "Coimbatore",  "", ""],
+
+  // COIMBATORE DISTRICT
+  [88, "Pollachi",         "Coimbatore",  "", ""],
+  [89, "Valparai",         "Coimbatore",  "", ""],
+  [90, "Sulur",            "Coimbatore",  "", ""],
+  [91, "Kavundampalayam",  "Coimbatore",  "", ""],
+  [92, "Coimbatore (North)","Coimbatore", "", ""],
+  [93, "Thondamuthur",     "Coimbatore",  "", ""],
+  [94, "Coimbatore (South)","Coimbatore", "", ""],
+  [95, "Singanallur",      "Coimbatore",  "", ""],
+  [96, "Kinathukadavu",    "Coimbatore",  "", ""],
+  [97, "Aravakurichi",     "Karur",       "", ""],
+
+  // KARUR DISTRICT
+  [98, "Karur",            "Karur",       "", ""],
+  [99, "Krishnarayapuram", "Karur",       "", ""],
+  [100,"Kulithalai",       "Karur",       "", ""],
+
+  // TIRUCHIRAPPALLI DISTRICT
+  [101,"Manapparai",       "Tiruchirappalli","",""],
+  [102,"Srirangam",        "Tiruchirappalli","",""],
+  [103,"Tiruchirappalli (West)","Tiruchirappalli","",""],
+  [104,"Tiruchirappalli (East)","Tiruchirappalli","",""],
+  [105,"Thiruverumbur",    "Tiruchirappalli","",""],
+  [106,"Lalgudi",          "Tiruchirappalli","",""],
+  [107,"Manachanallur",    "Tiruchirappalli","",""],
+  [108,"Musiri",           "Tiruchirappalli","",""],
+  [109,"Thuraiyur",        "Tiruchirappalli","",""],
+
+  // PERAMBALUR DISTRICT
+  [110,"Perambalur",       "Perambalur",  "", ""],
+  [111,"Kunnam",           "Perambalur",  "", ""],
+
+  // ARIYALUR DISTRICT
+  [112,"Ariyalur",         "Ariyalur",    "", ""],
+  [113,"Jayankondam",      "Ariyalur",    "", ""],
+
+  // CUDDALORE DISTRICT
+  [114,"Tittagudi",        "Cuddalore",   "", ""],
+  [115,"Vriddachalam",     "Cuddalore",   "", ""],
+  [116,"Neyveli",          "Cuddalore",   "", ""],
+  [117,"Panruti",          "Cuddalore",   "", ""],
+  [118,"Cuddalore",        "Cuddalore",   "", ""],
+  [119,"Kurinjipadi",      "Cuddalore",   "", ""],
+  [120,"Bhuvanagiri",      "Cuddalore",   "", ""],
+  [121,"Chidambaram",      "Cuddalore",   "", ""],
+  [122,"Kattumannarkoil",  "Cuddalore",   "", ""],
+
+  // MAYILADUTHURAI DISTRICT
+  [123,"Sirkazhi",         "Mayiladuthurai","",""],
+  [124,"Mayiladuthurai",   "Mayiladuthurai","",""],
+  [125,"Poompuhar",        "Mayiladuthurai","",""],
+  [126,"Nagapattinam",     "Nagapattinam","", ""],
+
+  // NAGAPATTINAM DISTRICT
+  [127,"Kilvelur",         "Nagapattinam","", ""],
+  [128,"Vedaranyam",       "Nagapattinam","", ""],
+
+  // TIRUVARUR DISTRICT
+  [129,"Thiruvarur",       "Tiruvarur",   "", ""],
+  [130,"Mannargudi",       "Tiruvarur",   "", ""],
+  [131,"Thiruthuraipoondi","Tiruvarur",   "", ""],
+  [132,"Papanasam",        "Thanjavur",   "", ""],
+
+  // THANJAVUR DISTRICT
+  [133,"Thiruvidaimarudur","Thanjavur",   "", ""],
+  [134,"Kumbakonam",       "Thanjavur",   "", ""],
+  [135,"Papanasam",        "Thanjavur",   "", ""],
+  [136,"Thanjavur",        "Thanjavur",   "", ""],
+  [137,"Orathanadu",       "Thanjavur",   "", ""],
+  [138,"Pattukkottai",     "Thanjavur",   "", ""],
+  [139,"Peravurani",       "Thanjavur",   "", ""],
+
+  // PUDUKOTTAI DISTRICT
+  [140,"Gandharvakottai",  "Pudukottai",  "", ""],
+  [141,"Viralimalai",      "Pudukottai",  "", ""],
+  [142,"Pudukottai",       "Pudukottai",  "", ""],
+  [143,"Thirumayam",       "Pudukottai",  "", ""],
+  [144,"Alangudi",         "Pudukottai",  "", ""],
+
+  // SIVAGANGA DISTRICT
+  [145,"Aranthangi",       "Pudukottai",  "", ""],
+  [146,"Karaikudi",        "Sivaganga",   "", ""],
+  [147,"Manamadurai",      "Sivaganga",   "", ""],
+  [148,"Sivaganga",        "Sivaganga",   "", ""],
+  [149,"Virudhunagar",     "Virudhunagar","", ""],
+
+  // VIRUDHUNAGAR DISTRICT
+  [150,"Aruppukkottai",    "Virudhunagar","", ""],
+  [151,"Rajapalayam",      "Virudhunagar","", ""],
+  [152,"Srivilliputhur",   "Virudhunagar","", ""],
+  [153,"Sattur",           "Virudhunagar","", ""],
+  [154,"Sivakasi",         "Virudhunagar","", ""],
+  [155,"Sholavandan",      "Madurai",     "", ""],
+
+  // MADURAI DISTRICT
+  [156,"Madurai East",     "Madurai",     "", ""],
+  [157,"Madurai North",    "Madurai",     "", ""],
+  [158,"Madurai South",    "Madurai",     "", ""],
+  [159,"Madurai Central",  "Madurai",     "", ""],
+  [160,"Madurai West",     "Madurai",     "", ""],
+  [161,"Thirparankundram", "Madurai",     "", ""],
+  [162,"Usilampatti",      "Madurai",     "", ""],
+  [163,"Melur",            "Madurai",     "", ""],
+  [164,"Thirumangalam",    "Madurai",     "", ""],
+
+  // DINDIGUL DISTRICT
+  [165,"Natham",           "Dindigul",    "", ""],
+  [166,"Dindigul",         "Dindigul",    "", ""],
+  [167,"Vedasandur",       "Dindigul",    "", ""],
+  [168,"Palani",           "Dindigul",    "", ""],
+  [169,"Oddanchatram",     "Dindigul",    "", ""],
+  [170,"Athoor",           "Dindigul",    "", ""],
+  [171,"Nilakkottai",      "Dindigul",    "", ""],
+
+  // THENI DISTRICT
+  [172,"Bodinayakkanur",   "Theni",       "", ""],
+  [173,"Cumbum",           "Theni",       "", ""],
+  [174,"Andipatti",        "Theni",       "", ""],
+  [175,"Periyakulam",      "Theni",       "", ""],
+
+  // RAMANATHAPURAM DISTRICT
+  [176,"Paramakudi",       "Ramanathapuram","",""],
+  [177,"Tiruvadanai",      "Ramanathapuram","",""],
+  [178,"Ramanathapuram",   "Ramanathapuram","",""],
+  [179,"Mudukulathur",     "Ramanathapuram","",""],
+
+  // THOOTHUKUDI DISTRICT
+  [180,"Vilathikulam",     "Thoothukudi", "", ""],
+  [181,"Ottapidaram",      "Thoothukudi", "", ""],
+  [182,"Thoothukudi",      "Thoothukudi", "", ""],
+  [183,"Tiruchendur",      "Thoothukudi", "", ""],
+  [184,"Srivaikuntam",     "Thoothukudi", "", ""],
+  [185,"Kovilpatti",       "Thoothukudi", "", ""],
+
+  // TIRUNELVELI DISTRICT
+  [186,"Sankarankovil",    "Tirunelveli", "", ""],
+  [187,"Vasudevanallur",   "Tirunelveli", "", ""],
+  [188,"Kadayanallur",     "Tirunelveli", "", ""],
+  [189,"Tenkasi",          "Tenkasi",     "", ""],
+  [190,"Alangulam",        "Tirunelveli", "", ""],
+  [191,"Tirunelveli",      "Tirunelveli", "", ""],
+  [192,"Ambasamudram",     "Tirunelveli", "", ""],
+  [193,"Palayamkottai",    "Tirunelveli", "", ""],
+  [194,"Nanguneri",        "Tirunelveli", "", ""],
+  [195,"Radhapuram",       "Tirunelveli", "", ""],
+
+  // TENKASI DISTRICT
+  [196,"Shencottah",       "Tenkasi",     "", ""],
+  [197,"Tenkasi",          "Tenkasi",     "", ""],
+  [198,"Shenkottai",       "Tenkasi",     "", ""],
+
+  // KANYAKUMARI DISTRICT
+  [199,"Padmanabhapuram",  "Kanyakumari", "", ""],
+  [200,"Vilavancode",      "Kanyakumari", "", ""],
+  [201,"Killiyoor",        "Kanyakumari", "", ""],
+  [202,"Nagercoil",        "Kanyakumari", "", ""],
+  [203,"Colachel",         "Kanyakumari", "", ""],
+  [204,"Padmanabhapuram",  "Kanyakumari", "", ""],
+
+  // TIRUPPUR DISTRICT
+  [205,"Dharapuram",       "Tiruppur",    "", ""],
+  [206,"Kangayam",         "Tiruppur",    "", ""],
+  [207,"Avinashi",         "Tiruppur",    "", ""],
+  [208,"Tiruppur (North)", "Tiruppur",    "", ""],
+  [209,"Tiruppur (South)", "Tiruppur",    "", ""],
+  [210,"Palladam",         "Tiruppur",    "", ""],
+  [211,"Udumalaipettai",   "Tiruppur",    "", ""],
+  [212,"Madathukulam",     "Tiruppur",    "", ""],
+
+  // DINDIGUL (additional)
+  [213,"Kodaikanal",       "Dindigul",    "", ""],
+
+  // VILLUPURAM DISTRICT
+  [214,"Ulundurpet",       "Villupuram",  "", ""],
+  [215,"Rishivandiyam",    "Villupuram",  "", ""],
+  [216,"Sankarapuram",     "Villupuram",  "", ""],
+  [217,"Tindivanam",       "Villupuram",  "", ""],
+  [218,"Vanur",            "Villupuram",  "", ""],
+  [219,"Villupuram",       "Villupuram",  "", ""],
+  [220,"Vikravandi",       "Villupuram",  "", ""],
+  [221,"Tirukoilur",       "Villupuram",  "", ""],
+  [222,"Kallakurichi",     "Kallakurichi","", ""],
+
+  // KALLAKURICHI DISTRICT
+  [223,"Chinnasalem",      "Kallakurichi","", ""],
+  [224,"Attur",            "Salem",       "", ""],
+  [225,"Gangavalli",       "Salem",       "", ""],
+
+  // TIRUVANNAMALAI DISTRICT
+  [226,"Tiruvannamalai",   "Tiruvannamalai","",""],
+  [227,"Kilpennathur",     "Tiruvannamalai","",""],
+  [228,"Polur",            "Tiruvannamalai","",""],
+  [229,"Arani",            "Tiruvannamalai","",""],
+  [230,"Cheyyar",          "Tiruvannamalai","",""],
+  [231,"Vandavasi",        "Tiruvannamalai","",""],
+
+  // KANCHEEPURAM (additional)
+  [232,"Kancheepuram",     "Kancheepuram","", ""],
+  [233,"Uthiramerur",      "Kancheepuram","", ""],
+  [234,"Tambaram",         "Kancheepuram","", ""],
+];
+
+// Build district list
+const districts = [...new Set(DATA.map(d => d[2]))].sort();
+const districtFilter = document.getElementById('districtFilter');
+districts.forEach(d => {
+  const opt = document.createElement('option');
+  opt.value = d;
+  opt.textContent = d;
+  districtFilter.appendChild(opt);
+});
+
+function getInitials(name) {
+  if (!name) return '?';
+  return name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+}
+
+function buildCard(item) {
+  const [ecNum, constituency, district, candidateName, photoUrl] = item;
+  const card = document.createElement('div');
+  card.className = 'candidate-card';
+  card.dataset.constituency = constituency.toLowerCase();
+  card.dataset.district = district.toLowerCase();
+  card.dataset.candidate = candidateName.toLowerCase();
+
+  const displayName = candidateName || 'To Be Announced';
+  const initials = getInitials(displayName);
+
+  const photoSection = photoUrl
+    ? `<img src="${photoUrl}" alt="${displayName}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+       <div class="photo-placeholder" style="display:none">
+         <div class="initials">${initials}</div>
+         <div class="ph-text">Photo<br>Coming Soon</div>
+       </div>`
+    : `<div class="photo-placeholder">
+         <div class="initials">${initials}</div>
+         <div class="ph-text">Photo<br>Coming Soon</div>
+       </div>`;
+
+  card.innerHTML = `
+    <div class="card-photo">
+      ${photoSection}
+      <div class="card-num">#${String(ecNum).padStart(3,'0')}</div>
+    </div>
+    <div class="card-info">
+      <div class="candidate-name">${displayName}</div>
+      <div class="constituency-name">${constituency}</div>
+      <div class="district-name">${district} District</div>
+    </div>`;
+  return card;
+}
+
+const grid = document.getElementById('candidatesGrid');
+const searchInput = document.getElementById('searchInput');
+const sortSelect = document.getElementById('sortSelect');
+const countDisplay = document.getElementById('countDisplay');
+
+function render() {
+  const q = searchInput.value.toLowerCase().trim();
+  const distVal = districtFilter.value;
+  const sortVal = sortSelect.value;
+
+  let filtered = DATA.filter(([ecNum, constituency, district, candidate]) => {
+    const matchQ = !q || constituency.toLowerCase().includes(q)
+                      || district.toLowerCase().includes(q)
+                      || candidate.toLowerCase().includes(q);
+    const matchD = !distVal || district === distVal;
+    return matchQ && matchD;
+  });
+
+  if (sortVal === 'candidate')     filtered.sort((a,b) => (a[3]||'').localeCompare(b[3]||''));
+  else if (sortVal === 'constituency') filtered.sort((a,b) => a[1].localeCompare(b[1]));
+  else if (sortVal === 'district') filtered.sort((a,b) => a[2].localeCompare(b[2]) || a[0]-b[0]);
+  // default: ec order (already sorted)
+
+  grid.innerHTML = '';
+  countDisplay.textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="no-results">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6M11 8v6"/></svg>
+        <p>No candidates match your search criteria.</p>
+      </div>`;
+    return;
+  }
+
+  // If sorted by district, add district separators
+  if (sortVal === 'district' || (!q && !distVal && sortVal === 'default')) {
+    let lastDistrict = null;
+    filtered.forEach(item => {
+      if (item[2] !== lastDistrict) {
+        lastDistrict = item[2];
+        const sep = document.createElement('div');
+        sep.className = 'district-header';
+        sep.innerHTML = `<span class="dh-label">${item[2]} District</span><div class="dh-line"></div>`;
+        grid.appendChild(sep);
+      }
+      grid.appendChild(buildCard(item));
+    });
+  } else {
+    filtered.forEach(item => grid.appendChild(buildCard(item)));
+  }
+}
+
+searchInput.addEventListener('input', render);
+districtFilter.addEventListener('change', render);
+sortSelect.addEventListener('change', render);
+
+render();
+</script>
+</body>
+</html>
